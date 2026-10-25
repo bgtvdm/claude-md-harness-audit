@@ -1,5 +1,7 @@
 # claude-md-harness-audit
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-3b3431?style=flat-square)](LICENSE)
+
 > A Claude Code skill that audits your `CLAUDE.md` against the built-in harness — and tells you which rules to cut because Claude already follows them anyway.
 
 ## The 30-second version
@@ -51,22 +53,34 @@ Then you pick which cuts to apply, and the skill produces the diff.
 
 ## Install
 
-### Option A — Ask Claude Code to install it for you
+### With an AI agent
 
 Paste this into any Claude Code session:
 
-> Install the `claude-md-harness-audit` skill from https://github.com/vibecodoor/claude-md-harness-audit — clone the repo into `~/.claude/skills/claude-md-harness-audit/`, verify `SKILL.md` is in place, and confirm the skill is registered. Then run it on my global `CLAUDE.md` so I can see a sample audit.
-
-Claude will clone the repo, verify the install, and immediately demo the skill on your own `CLAUDE.md`.
-
-### Option B — Manual
-
-```bash
-git clone https://github.com/vibecodoor/claude-md-harness-audit \
-  ~/.claude/skills/claude-md-harness-audit
+```text
+Install the claude-md-harness-audit skill from
+https://github.com/bgtvdm/claude-md-harness-audit.
+1. Run: npx skills add bgtvdm/claude-md-harness-audit -g -a claude-code
+   No Node? Clone the repo into ~/.claude/skills/claude-md-harness-audit instead.
+2. Check that SKILL.md sits directly in that folder.
+3. Tell me to start a new session, then run the skill on my global CLAUDE.md
+   so I can see a sample audit.
+To update later: npx skills update claude-md-harness-audit, or git pull in that folder.
 ```
 
-That's it. Next time you start Claude Code, the skill is available.
+### By hand
+
+```bash
+npx skills add bgtvdm/claude-md-harness-audit -g -a claude-code
+```
+
+Without Node:
+
+```bash
+git clone https://github.com/bgtvdm/claude-md-harness-audit ~/.claude/skills/claude-md-harness-audit
+```
+
+Next time you start Claude Code, the skill is available.
 
 ## Use
 
@@ -88,10 +102,10 @@ claude-md-harness-audit/
 
 That's it — one file. The skill doesn't ship a static catalog of harness rules. Instead, when you run the audit, Claude compares your `CLAUDE.md` against **the harness loaded in its own active session** — its own system prompt. That means:
 
-- ✅ Always current — no stale snapshot
-- ✅ Matches the exact Claude Code version you're running
-- ✅ Nothing to maintain when Anthropic updates the harness
-- ✅ Quotes are verifiable — they come from the same system prompt your Claude is running on
+- Always current — no stale snapshot
+- Matches the exact Claude Code version you're running
+- Nothing to maintain when Anthropic updates the harness
+- Quotes are verifiable — they come from the same system prompt your Claude is running on
 
 For background on what the harness contains, see:
 - [Anthropic Best Practices for Claude Code](https://code.claude.com/docs/en/best-practices)
